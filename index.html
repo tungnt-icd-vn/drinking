@@ -1,0 +1,142 @@
+<div class="center">
+  <div id="question"></div>
+  <button onclick="ramdom()" class="button-54">Click me</button>
+</div>
+<style>
+  .button-54 {
+    font-family: "Open Sans", sans-serif;
+    font-size: 16px;
+    letter-spacing: 2px;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #000;
+    cursor: pointer;
+    border: 3px solid;
+    padding: 0.25em 0.5em;
+    box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px,
+      5px 5px 0px 0px;
+    position: relative;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+
+  .button-54:active {
+    box-shadow: 0px 0px 0px 0px;
+    top: 5px;
+    left: 5px;
+  }
+
+  @media (min-width: 768px) {
+    .button-54 {
+      padding: 0.5em 1em;
+    }
+  }
+
+  .center {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    max-width: 768px;
+    padding: 2rem;
+    margin: 2rem auto;
+    height: 100vh;
+    background-color: bisque;
+    position: relative;
+  }
+
+  #question {
+    font-size: 2rem;
+    position: absolute;
+    top: 20%;
+    left: 5%;
+    right: 5%;
+  }
+</style>
+<script>
+  const jsonData = {
+    1: "Thói quen kỳ lạ nhất của bạn là gì?",
+    2: "Bạn muốn có bao nhiêu đứa trẻ?",
+    3: "Một sự thật đáng xấu hổ mà tôi nên biết về bạn là gì?",
+    4: "Bạn có tin vào tình yêu từ cái nhìn đầu tiên?",
+    5: "Bạn thích thầm ai trong này ?",
+    6: "Người đối diện bạn uống 1 ly",
+    7: "Đám cưới trong mơ của bạn là gì?",
+    8: "Niềm vui tội lỗi của bạn là gì?",
+    9: "Bạn mơ mộng về điều gì nhất?",
+    10: "2 Người kế bên uống 1 ly",
+    11: "Bạn có thể liếm khuỷu tay của bạn?",
+    12: "Bạn cảm thấy thế nào về mạng xã hội?",
+    13: "Im lặng, bạn im lăng tới vòng tiếp theo vi phạm uống 1 ly",
+    14: "Nơi yêu thích của bạn để được hôn?",
+    15: "Khoảng thời gian dài nhất mà bạn không quan hệ tình dục là bao lâu?",
+    16: "Bạn đã bao giờ nghĩ đến việc kết hôn với người khác chưa?",
+    17: "Bạn đã có bao nhiêu mối quan hệ trước vợ / chồng / người yêu của mình?",
+    18: "Bạn có bao nhiêu người yêu cũ ?",
+    19: "Kể tên 1 bạn khác giới làm bạn ấn tượng nhất, cụ thể",
+    20: "Điều gì làm bạn phải lòng người khác giới ? ",
+    21: "Điều ngọt ngào nhất mà vợ / chồng / Người yêu bạn từng làm cho bạn là gì ?",
+    22: "Lý do bạn chia tay ?",
+    23: "Bạn đang trong 1 mối quan hệ, bạn gặp 1 người tốt hơn bạn sẻ làm gì ?",
+    24: "Đều bạn cảm thấy có lỗi nhất với ba mẹ ?",
+    25: "Bạn có bao giờ đi xem phim 1 mình ? kể ra trải nghiệm. ",
+    26: "Nhìn vào mắt 1 người ai chớp mắt trước người đó uống 1 ly",
+    27: "Ở đây ai là couple uống 1 ly mỗi người",
+    28: "Ở đây ai là FA uống 1 ly",
+    29: "Tri kỷ, bạn chọn 1 người bất kỳ làm tri kỷ 1 trong 2 người bị uống thì người còn lại cũng phải uống ",
+    30: "Quyền Năng, bạn đưa ra 1 rule tất cả người tham gia phải thực hiện, ai vi phạm 1 ly áp dụng đến cuối trò chơi",
+    31: "Bạn có bao nhiêu người yêu cũ ?",
+    32: "Bạn đã cắm sừng chưa ?",
+    33: "Bạn có hài lòng với cuộc sống hiện tại ?",
+    34: "Bạn có hài lòng với công việc hiện tại ?",
+    35: "Theo bạn ai là người trả tiền khi hẹn hò ?",
+    36: "Bạn từng hoặc đang dùng ứng dụng hẹn hò?",
+    37: "Bạn đã từng say nắng người khác giới ? kể ra.",
+    38: "Bạn hay đánh giá về người yêu hiện tại của bạn, hoặc 1 người bạn đang tham gia.",
+    39: "Bạn nghĩ sao về bạn thân khác giới, giới thiệu về bạn thân khác giới của bạn.",
+    40: "Câu chuyện đằng sau cái tên của bạn là gì?",
+    41: "Bạn có kỷ niệm đặc biệt nào với ông bà của mình không?",
+    42: "Kể về lần chơi ngu của bạn."
+    // 6: "Ước mơ lúc nhỏ của bạn là gì? có phải đã lâu rồi bạn đã quên đi ước mơ của chính mình.",
+    // 6: "Người đối diện bạn uống 1 ly",
+    // 6: "Người đối diện bạn uống 1 ly",
+    // 6: "Người đối diện bạn uống 1 ly",
+    // 6: "Người đối diện bạn uống 1 ly",
+    // 6: "Người đối diện bạn uống 1 ly",
+    // 6: "Người đối diện bạn uống 1 ly",
+    // 6: "Người đối diện bạn uống 1 ly",
+    // 6: "Người đối diện bạn uống 1 ly",
+    // 6: "Người đối diện bạn uống 1 ly",
+    // 6: "Người đối diện bạn uống 1 ly",
+    // 6: "Người đối diện bạn uống 1 ly",
+    // 6: "Người đối diện bạn uống 1 ly",
+    // 6: "Người đối diện bạn uống 1 ly",
+    // 6: "Người đối diện bạn uống 1 ly",
+    // 6: "Người đối diện bạn uống 1 ly",
+    // 6: "Người đối diện bạn uống 1 ly",
+    // 6: "Người đối diện bạn uống 1 ly",
+    // 6: "Người đối diện bạn uống 1 ly",
+    // 6: "Người đối diện bạn uống 1 ly",
+    // 6: "Người đối diện bạn uống 1 ly",
+    // 6: "Người đối diện bạn uống 1 ly",
+    // 6: "Người đối diện bạn uống 1 ly",
+    // 6: "Người đối diện bạn uống 1 ly",
+    // 6: "Người đối diện bạn uống 1 ly",
+    // 6: "Người đối diện bạn uống 1 ly",
+    // 6: "Người đối diện bạn uống 1 ly",
+    // 6: "Người đối diện bạn uống 1 ly",
+    // 6: "Người đối diện bạn uống 1 ly",
+    // 6: "Người đối diện bạn uống 1 ly",
+    // 6: "Người đối diện bạn uống 1 ly",
+    // 6: "Người đối diện bạn uống 1 ly",
+    // 6: "Người đối diện bạn uống 1 ly",
+    // 6: "Người đối diện bạn uống 1 ly",
+    // 6: "Người đối diện bạn uống 1 ly"
+  };
+  const values = Object.values(jsonData);
+
+  function ramdom() {
+    const randomValue = values[parseInt(Math.random() * values.length)];
+    document.getElementById("question").innerText = randomValue;
+  }
+</script>
